@@ -1,0 +1,33 @@
+{
+  "name": "password_crypt",
+  "version": "1.0.0",
+  "description": "application that encrypt passwords",
+  "keywords": [
+    "npm",
+    "javascript",
+    "password",
+    "hash",
+    "node"
+  ],
+  "homepage": "https://github.com/KarolainReyes/Password_crypt#readme",
+  "bugs": {
+    "url": "https://github.com/KarolainReyes/Password_crypt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarolainReyes/Password_crypt.git"
+  },
+  "license": "ISC",
+  "author": "'Karolain', 'Michel', 'Andres'",
+  "type": "commonjs",
+  "main": "node main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "@types/prompt-sync": "^4.2.3",
+    "bcrypt": "^6.0.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
