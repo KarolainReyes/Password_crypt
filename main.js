@@ -4,7 +4,7 @@
  const fs = require('fs');
  const readline = require('readline');
  const clear = require ('clear');
-
+ const chalk = require('chalk');  // chalk@4
 /////Functions
 
 //Turn the password to a hashed password and return it
@@ -58,16 +58,16 @@ async function main(){
             case "1":
                 clear(); 
                 const emailAccess = await ask("Enter your email: ");
-                const emailAccessValid = users.find(usuario => usuario.email === emailAcces); //Confirm that the email gave from the users exits
-                if(!emailAccessValid){console.log("Email not found"); console.log("-----------------------");await sleep(1500);break;}
+                const emailAccessValid = users.find(usuario => usuario.email === emailAccess); //Confirm that the email gave from the users exits
+                if(!emailAccessValid){console.log(chalk.red("Email not found")); console.log("-----------------------");await sleep(1500);break;}
                 const passwordAccess = await ask("Enter your password: ");
                 const match = await bcrypt.compare(passwordAccess, emailAccessValid.password);
                 if (match) {
-                    console.log("✅ Login succesfull.");
+                    console.log(chalk.green("Login succesfully."));
                     console.log("-----------------------");
                     await sleep(1500);
                   } else {
-                    console.log("❌ Wrong password, try again.");
+                    console.log(chalk.red(" Wrong password, try again."));
                     console.log("-----------------------");
                     await sleep(1500);
                     break;}
@@ -77,16 +77,16 @@ async function main(){
                 clear();
                 const emailRegister = await ask("Enter your email: ");
                 const emailRegisterValid = users.some(usuario => usuario.email === emailRegister);
-                if(emailRegisterValid){console.log("Email already exists"); console.log("-----------------------");await sleep(1500);break;}
+                if(emailRegisterValid){console.log(chalk.red("Email already exists")); console.log("-----------------------");await sleep(1500);break;}
                 const passwordRegister = await ask("Enter your password: ");
                 const passwordRegisterConfirm = await ask ("Confirm your password: ");
                 clear();
-                if (passwordRegister!=passwordRegisterConfirm){console.log("The passwords doesn't match"); console.log("-----------------------");await sleep(1500);break;}
+                if (passwordRegister!=passwordRegisterConfirm){console.log(chalk.red("The passwords don't match")); console.log("-----------------------");await sleep(1500);break;}
                 const passwordHashed = await hashPassword(passwordRegister);
                 const newUser = {email:emailRegister,password:passwordHashed};
                 users.push(newUser);
                 fs.writeFileSync("accounts.json", JSON.stringify(users, null, 2), 'utf8');
-                console.log("User has been created succesfuly");
+                console.log(chalk.green("User has been created succesfully"));
                 console.log("-----------------------");
                 await sleep(1500);
                 break;
@@ -98,9 +98,9 @@ async function main(){
                 break;
             default:
                 clear();
-                console.log("-----------------------");
-                console.log("Choose a correct option");
-                console.log("-----------------------");
+                console.log(chalk.yellow("-----------------------"));
+                console.log(chalk.yellow("Choose a correct option"));
+                console.log(chalk.yellow("-----------------------"));
                 await sleep(1000);
                 break;
         }
@@ -121,11 +121,11 @@ async function logged(emailAccessValid,users) {
                 clear();
                 const newPassword = await ask("Enter your new password: ");
                 const newPasswordConfirm = await ask("Confirm your new password: ");
-                if(newPassword!=newPasswordConfirm){console.log("Passwords doesnt match"); console.log("-----------------------");await sleep(1500);break;};
+                if(newPassword!=newPasswordConfirm){console.log(chalk.red("Passwords don't match")); console.log("-----------------------");await sleep(1500);break;};
                 const newPasswordHashed = await hashPassword(newPassword);
                 emailAccessValid.password=newPasswordHashed;
                 fs.writeFileSync("accounts.json", JSON.stringify(users, null, 2), 'utf8');
-                console.log("Password changed nicely");
+                console.log(chalk.green("Password changed succesfully"));
                 console.log("-----------------------");
                 await sleep(1500);
                 break;
@@ -133,10 +133,10 @@ async function logged(emailAccessValid,users) {
                 clear();
                 const newEmail = await ask("Enter your new email: ");
                 const newEmailConfirm = await ask("Confirm your new email: ");
-                if (newEmail!=newEmailConfirm){console.log("The emails doesnt match"); console.log("-----------------------");await sleep(1500);break;}
+                if (newEmail!=newEmailConfirm){console.log(chalk.red("The emails don't match")); console.log("-----------------------");await sleep(1500);break;}
                 emailAccessValid.email=newEmail;
                 fs.writeFileSync("accounts.json", JSON.stringify(users, null, 2), 'utf8');
-                console.log("Your email was changed");
+                console.log(chalk.green("Your email was changed"));
                 console.log("-----------------------");
                 await sleep(1500);
                 break;
@@ -146,7 +146,7 @@ async function logged(emailAccessValid,users) {
                 await sleep(1500);
                 break;
             default:
-                console.log("Type a correct option");
+                console.log(chalk.yellow("Type a correct option"));
                 console.log("-----------------------");
                 await sleep(1000);
                 break;
