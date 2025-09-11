@@ -99,7 +99,7 @@ Type an option:
 ````
 ## 🎥 Video de Presentación
 
-📌 Mira el video explicativo aquí 👉 [LINK AL VIDEO DE YOUTUBE]
+📌 Mira el video explicativo aquí 👉 [https://youtu.be/0UYCP7rRDNE?si=KsIkTsSlcfUEA_2M]
 
 En el video se explica:
 
