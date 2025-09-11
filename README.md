@@ -37,11 +37,11 @@ Este proyecto resuelve el problema implementando un sistema de registro y login 
 
 **1.** El sistema arranca mostrando un menú principal:
 
-- 1. Login
+-  Login
 
-- 2. Register
+-  Register
 
-- 3. Exit
+-  Exit
 
 **2.** En el registro:
 
